@@ -4,7 +4,7 @@ The [Last Value Caching Exchange](https://github.com/rabbitmq/rabbitmq-lvc-plugi
 (x-lvc) keeps track of the last value that was published with each routing key,
 and when a queue is bound, it automatically enqueues the last value for the binding key.
 
-This plug-in enables access to the x-lvc cache via the HTTP API.
+This plug-in implements an HTTP API for accessing the last published values.
 
 Data published with a routing *key* to an x-lvc *exchange* at *vhost* can
 be accessed via HTTP GET:
