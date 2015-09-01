@@ -1,0 +1,10 @@
+{application, rabbitmq_lvc_management,
+ [{description, "Last Value Cache Management"},
+  {vsn, "0.0.1"},
+  {modules, []},
+  {registered, []},
+  {env, []},
+  {applications, [kernel, stdlib, rabbitmq_management]}
+ ]}.
+
+% end of file
