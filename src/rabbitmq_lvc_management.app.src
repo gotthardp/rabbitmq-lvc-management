@@ -1,6 +1,6 @@
 {application, rabbitmq_lvc_management,
  [{description, "Last Value Cache Management"},
-  {vsn, "0.0.1"},
+  {vsn, "0.1.0"},
   {modules, []},
   {registered, []},
   {env, []},
