@@ -18,6 +18,8 @@
 -include_lib("rabbitmq_lvc/include/rabbit_lvc_plugin.hrl").
 -include_lib("amqp_client/include/amqp_client.hrl").
 
+-define(DEFAULT_CONTENT, "application/octet-stream").
+
 init(_Config) -> {ok, #context{}}.
 
 service_available(ReqData, Context) ->
@@ -27,18 +29,17 @@ service_available(ReqData, Context) ->
         {error, _Reason} -> {false, ReqData, Context}
     end.
 
-allowed_methods(ReqData, Context=#context{impl=none}) ->
-    {[], ReqData, Context};
-allowed_methods(ReqData, Context=#context{impl=#basic_message{}}) ->
+allowed_methods(ReqData, Context) ->
     {['GET'], ReqData, Context}.
 
 content_types_provided(ReqData, Context=#context{impl=none}) ->
-    {[], ReqData, Context};
+    % despite the request will fail we need to announce accepted content-types
+    {[{?DEFAULT_CONTENT, to_bytes}], ReqData, Context};
 content_types_provided(ReqData, Context=#context{impl=#basic_message{content=Content}}) ->
     {#'P_basic'{content_type=ContentType}, _Payload} = rabbit_basic:from_content(Content),
     case ContentType of
         % default content-type as per HTTP standard
-        undefined -> {[{"application/octet-stream", to_bytes}], ReqData, Context};
+        undefined -> {[{?DEFAULT_CONTENT, to_bytes}], ReqData, Context};
         Type -> {[{binary_to_list(Type), to_bytes}], ReqData, Context}
     end.
 
