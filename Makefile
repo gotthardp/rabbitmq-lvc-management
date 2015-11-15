@@ -20,3 +20,10 @@ ERLANG_MK_COMMIT = rabbitmq-tmp
 
 include rabbitmq-components.mk
 include erlang.mk
+
+# --------------------------------------------------------------------
+# Testing.
+# --------------------------------------------------------------------
+
+WITH_BROKER_TEST_COMMANDS := \
+	eunit:test(rabbit_lvc_mgmt_tests,[verbose])
