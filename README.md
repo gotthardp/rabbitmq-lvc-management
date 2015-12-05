@@ -15,3 +15,5 @@ The last segment can be omitted. Data published with no routing key to an x-lvc
 `http://<server>:15672/api/lvc/`*vhost*`/`*exchange*
 
 Default virtual host is called "/", this will need to be encoded as "%2f".
+
+[![Build Status](https://travis-ci.org/gotthardp/rabbitmq-lvc-management.svg?branch=master)](https://travis-ci.org/gotthardp/rabbitmq-lvc-management)
